@@ -1,2 +1,2 @@
 # Github-x-Go-Learn
-Learn VCS and Go-Lang
+Learn Git - Github VCS and Go-Lang
