@@ -6,7 +6,7 @@ import (
 	"parsertry/internal/tools"
 )
 
-func LoadTheme(path string) (*tools.Tool, error) {
+func LoadToolFromTheme(path string) (*tools.Tool, error) {
 	raw, err := os.ReadFile(path);
 	if err != nil {
 		return nil, err;

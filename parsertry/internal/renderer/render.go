@@ -15,11 +15,11 @@ func Render(templatePath, outputPath string, tool any) error {
 		return err;
 	}
 
-	out, err := os.Create(outputPath)
+	out, err := os.Create(outputPath);
 	if err != nil {
 		return err;
 	}
-	defer out.Close()
+	defer out.Close();
 
 	return tmpl.Execute(out, tool);
 }

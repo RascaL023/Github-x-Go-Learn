@@ -15,26 +15,30 @@ func main() {
 	}
 
 	name := os.Args[1];
-	theme, err := loader.LoadTheme(filepath.Join("themes", name, "theme.json"));
+	theme, err := loader.LoadToolFromTheme(filepath.Join("themes", name, "theme.json"));
 	if err != nil {
-		panic("Theme not found!");
+		panic(fmt.Sprintf("Theme %s not found!", name));
+	}
+
+	tools, err := loader.LoadToolMap("assets/map/path.txt");
+	if err != nil {
+		panic("Path map not found!");
+	}
+
+
+	registerTools := map[string]renderer.Renderer {
+		"wlogout": theme.Wlogout,
 	}
 
 	
-	tools := []struct {
-		Renderer			renderer.Renderer
-		TemplatePath  string
-		OutputPath    string
-	}{
-		{
-			Renderer: 		theme.Wlogout,
-			TemplatePath: "assets/templates/wlogout.tmpl",
-			OutputPath:	  "output/wlogout/source.css",
-		},
-	}
-
 	for _, tool := range tools {
-		if err := tool.Renderer.Render(tool.TemplatePath, tool.OutputPath); err != nil {
+		reg, ok := registerTools[tool.Name];
+		if !ok {
+			fmt.Println("Unknown tool:", tool.Name);
+			continue;
+		}
+
+		if err := reg.Render(tool.TemplatePath, tool.OutputPath); err != nil {
 			panic(err);
 		}
 	}
