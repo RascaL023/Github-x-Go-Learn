@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BINARY="bin/parser"
+BINARY="./cmd/bin/parser"
 SRC="./cmd/parser"
 mode=$1
 opt=$2
@@ -8,6 +8,11 @@ opt=$2
 clear
 
 case "$mode" in
+  run-bin)
+    echo "> Running.."
+    "$BINARY" "$opt"
+    echo "> Done."
+    ;;  
   run-raw)
     echo "> Running.."
     go run "$SRC" "$opt"

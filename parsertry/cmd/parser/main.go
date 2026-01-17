@@ -28,6 +28,7 @@ func main() {
 
 	registerTools := map[string]renderer.Renderer {
 		"wlogout": theme.Wlogout,
+		"cava"	 : theme.Cava,
 	}
 
 	

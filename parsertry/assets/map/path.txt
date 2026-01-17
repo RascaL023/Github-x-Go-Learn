@@ -1,2 +1,3 @@
 wlogout|assets/templates/wlogout/wlogout.tmpl|output/wlogout/source.css
+cava|assets/templates/cava/cava.tmpl|output/cava/cava_extra
 
