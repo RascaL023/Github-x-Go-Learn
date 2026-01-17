@@ -1,0 +1,2 @@
+wlogout|assets/templates/wlogout/wlogout.tmpl|output/wlogout/source.css
+
