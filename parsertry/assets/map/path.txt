@@ -1,3 +1,4 @@
 wlogout|assets/templates/wlogout/wlogout.tmpl|output/wlogout/source.css
 cava|assets/templates/cava/cava.tmpl|output/cava/cava_extra
+waybar|assets/templates/waybar/spacer.tmpl|output/waybar/sources.css
 

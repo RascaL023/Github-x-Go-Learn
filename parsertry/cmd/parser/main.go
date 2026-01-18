@@ -20,15 +20,28 @@ func main() {
 		panic(fmt.Sprintf("Theme %s not found!", name));
 	}
 
-	tools, err := loader.LoadToolMap("assets/map/path.txt");
+	wb, err := loader.LoadWaybar(filepath.Join("themes", name, "waybar.json"));
 	if err != nil {
-		panic("Path map not found!");
+		panic(fmt.Sprintf("Waybar Preset %s error!", name));
 	}
 
+	tools, err := loader.LoadToolMap("assets/map/path.txt");
+	if err != nil {
+		panic("Map path not found!");
+	}
+
+	state, err := loader.LoadState("assets/map/state.json");
+	if err != nil {
+		panic("State path not found!");
+	}
 
 	registerTools := map[string]renderer.Renderer {
 		"wlogout": theme.Wlogout,
 		"cava"	 : theme.Cava,
+		"waybar" : renderer.WaybarRender{
+			Waybar: *wb,
+			Preset: state.Waybar,
+		},
 	}
 
 	
