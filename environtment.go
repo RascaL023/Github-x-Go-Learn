@@ -13,13 +13,19 @@ func systemEnvironment() {
 }
 
 func try() {
- 	path := "$HOME/Documents/Kuliah";
-	if strings.HasPrefix(path, "$") {
-		trim := strings.TrimPrefix(path, "$");
-		parts := strings.SplitN(trim, "/", 2);
-		fmt.Println(parts);
-	}
+ 	path := "data|output/$HOME/Documents/Kuliah";
+	for i := 0; i < len(path); i++ {
+		if path[i] != '$' {
+			continue;
+		}
 
+		start := i + 1;
+		end := start;
+
+		for end < len(path) {
+
+		}
+	}
 	// rep := "mechabox";
 	// custom := "$waybarPreset";
 }
