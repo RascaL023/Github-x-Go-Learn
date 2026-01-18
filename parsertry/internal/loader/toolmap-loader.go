@@ -3,6 +3,8 @@ package loader
 import (
 	"bufio"
 	"os"
+	"parsertry/internal/helper"
+	"parsertry/internal/state"
 	"strings"
 )
 
@@ -12,7 +14,9 @@ type ToolMap struct {
 	OutputPath		string
 }
 
-func LoadToolMap(path string) ([]ToolMap, error) {
+func LoadToolMap(path string, state *state.State) ([]ToolMap, error) {
+	path = helper.ExpandPath(path, state);
+
 	fileMap, err := os.Open(path);
 	if err != nil {
 		return nil, err;
@@ -23,7 +27,7 @@ func LoadToolMap(path string) ([]ToolMap, error) {
 	scanner := bufio.NewScanner(fileMap);
 
 	for scanner.Scan() {
-		line := scanner.Text();
+		line := helper.ExpandPath(scanner.Text(), state);
 		parts := strings.Split(line, "|");
 
 		if len(parts) != 3 {
