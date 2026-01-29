@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
-	"strings"
 )
 
 func systemEnvironment() {
@@ -12,24 +10,11 @@ func systemEnvironment() {
 	fmt.Println("User:", user);
 }
 
-func try() {
- 	path := "data|output/$HOME/Documents/Kuliah";
-	for i := 0; i < len(path); i++ {
-		if path[i] != '$' {
-			continue;
-		}
-
-		start := i + 1;
-		end := start;
-
-		for end < len(path) {
-
-		}
-	}
-	// rep := "mechabox";
-	// custom := "$waybarPreset";
+func try(path string) string {
+	return os.ExpandEnv(path);
 }
 
 func main(){
-	try();
+	fmt.Println(try("$HOME/Documents"));
+	fmt.Println(try("$MYENV"));
 }

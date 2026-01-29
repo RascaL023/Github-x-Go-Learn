@@ -11,6 +11,11 @@ func parseKeyword(keyword string) string {
 	switch strings.ToUpper(keyword) {
 	case "HOME"		: res = os.Getenv("HOME");
 	case "WAYBAR" : res = "spacer";
+	default:
+		res = os.Getenv(keyword);
+		if res == "" {
+			res = "$" + keyword;
+		}
 	}
 	
 	return res;
@@ -42,8 +47,8 @@ func ExpandPath(path string) string {
 }
 
 func main(){
-	path := "waybar|assets/templates/waybar/$WAYBAR.tmpl";
-	// path := "HOME/waybar/HOME/source.css";
+	// path := "waybar|assets/templates/waybar/$WAYBAR.tmpl";
+	path := "$MYEN/waybar";
 	ex := ExpandPath(path);
 	fmt.Println(ex);
 }
